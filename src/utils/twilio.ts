@@ -4,14 +4,15 @@ const authToken = process.env.TWILIO_AUTH_TOKEN!;
 
 const client = new Twilio(accountSid, authToken);
 
-export const sendMessage = (to: string, from: string, body: string) => {
+export const sendMessage = (to: string, from: string, body: string,mediaUrl:string) => {
 
   return new Promise((resolve, reject) => {
     client.messages
       .create({
         to,
         from,
-        body
+        body,
+        mediaUrl
       })
       .then(message => {
         resolve(message.sid);
